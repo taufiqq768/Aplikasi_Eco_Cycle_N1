@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Livewire\Transaksi\Tunggulkaret;
+
+use Livewire\Component;
+
+class ViewData extends Component
+{
+    public function render()
+    {
+        $tahun = date('Y');
+        $bulan = date('m');
+        return view('livewire.transaksi.tunggulkaret.view-data', compact('tahun', 'bulan'));
+    }
+}
