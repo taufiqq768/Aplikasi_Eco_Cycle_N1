@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HargaNormalWaist;
 use App\Models\MasterUnitN1;
-use App\Repositories\storedProcedure_N1;
+use App\Repositories\StoredProcedure_N1;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class DashboardApiController_N1 extends Controller
     protected $storedProcedure;
     public function __construct()
     {
-        $this->storedProcedure = new storedProcedure_N1();
+        $this->storedProcedure = new StoredProcedure_N1();
     }
 
     public function dashboardDataPenjualan_N1($bulan, $tahun)

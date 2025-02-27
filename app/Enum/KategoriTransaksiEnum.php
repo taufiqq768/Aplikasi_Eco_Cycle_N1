@@ -15,6 +15,7 @@ enum KategoriTransaksiEnum: string
     case PKM = 'PKM';
     case PRODUKSI_N1 = 'N1-Produksi';
     case TEA_WASTE = 'N1-Teh-Tea Waste';
+    case ABU_HE = 'N1-Teh-Abu HE';
     case LIMBAH_SERUM = 'N1-Karet-Limbah Serum';
     case TUNGGUL_KARET = 'N1-Karet-Tunggul Karet';
     case ABU = 'N1-Karet-Abu';

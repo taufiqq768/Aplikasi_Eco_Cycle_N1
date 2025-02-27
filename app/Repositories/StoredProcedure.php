@@ -7,17 +7,17 @@ class StoredProcedure
 {
     public function getDashboardData($bulan, $tahun)
     {
-        return DB::select('CALL eco_cycle.SP_GET_ALL_DASHBOARD(?, ?)', [$tahun, $bulan]);
+        return DB::select('CALL SP_GET_ALL_DASHBOARD(?, ?)', [$tahun, $bulan]);
     }
 
     public function getDashboardDataBi($bulan, $tahun)
     {
-        return DB::select('CALL eco_cycle.SP_GET_ALL_DASHBOARD_BI(?, ?)', [$tahun, $bulan]);
+        return DB::select('CALL SP_GET_ALL_DASHBOARD_BI(?, ?)', [$tahun, $bulan]);
     }
 
     public function getUnitAllData($bulan, $tahun, $isBi = NULL)
     {
-        return DB::select('CALL eco_cycle.SP_GET_ALL_UNIT_DATA(?, ?, ?)', [$tahun, $bulan, $isBi]);
+        return DB::select('CALL SP_GET_ALL_UNIT_DATA(?, ?, ?)', [$tahun, $bulan, $isBi]);
     }
 
     public function getUnitAllDataRegion($bulan, $tahun, $region)
@@ -32,18 +32,18 @@ class StoredProcedure
 
     public function getUnitAllDataWithFormat($tahun, $bulan, $isBi, $tipe)
     {
-        $data = DB::select('CALL eco_cycle.SP_GET_ALL_UNIT_DATA_W_FORMAT(?, ?, ?, ?)', [$tahun, $bulan, $isBi, $tipe]);
+        $data = DB::select('CALL SP_GET_ALL_UNIT_DATA_W_FORMAT(?, ?, ?, ?)', [$tahun, $bulan, $isBi, $tipe]);
         return $data;
     }
 
     public function getUnitAllDataWithFormatRegion($tahun, $bulan, $isBi, $tipe, $region)
     {
-        return DB::select('CALL eco_cycle.SP_GET_ALL_UNIT_DATA_W_FORMAT_REGION(?, ?, ?, ?, ?)', [$tahun, $bulan, $isBi, $tipe, $region]);
+        return DB::select('CALL SP_GET_ALL_UNIT_DATA_W_FORMAT_REGION(?, ?, ?, ?, ?)', [$tahun, $bulan, $isBi, $tipe, $region]);
     }
 
     public function getUnitAllDataWithFormatUnit($tahun, $bulan, $isBi, $tipe, $unit)
     {
-        return DB::select('CALL eco_cycle.SP_GET_ALL_UNIT_DATA_W_FORMAT_UNIT(?, ?, ?, ?, ?)', [$tahun, $bulan, $isBi, $tipe, $unit]);
+        return DB::select('CALL SP_GET_ALL_UNIT_DATA_W_FORMAT_UNIT(?, ?, ?, ?, ?)', [$tahun, $bulan, $isBi, $tipe, $unit]);
     }
 
     public function getDashboardDataRegion($bulan, $tahun, $region)

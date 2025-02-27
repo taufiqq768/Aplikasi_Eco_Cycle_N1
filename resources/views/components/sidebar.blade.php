@@ -73,6 +73,11 @@
                                 N1-Teh-Tea Waste
                             </a>
                         </li>
+                        <li><a href="{{ route('abu-he.view') }}" wire:navigate>
+                                <i class="mdi mdi-checkbox-blank-circle align-middle"></i>
+                                N1-Teh-Abu HE
+                            </a>
+                        </li>
                         <li><a href="{{ route('limbah-serum.view') }}" wire:navigate>
                                 <i class="mdi mdi-checkbox-blank-circle align-middle"></i>
                                 N1-Karet-Limbah Serum
@@ -194,7 +199,7 @@
                     <li>
                         <a href="{{ route('stokn1.view') }}" class="" wire:navigate>
                             <i class="fas fa-database"></i>
-                            <span>Stock Awal Tahun</span>
+                            <span>Stock Awal Tahun N1</span>
                         </a>
                     </li>
                     <li>
@@ -209,6 +214,13 @@
                             <span>Manajemen Harga Normal</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('manajemen-harga-normal-n1.index') }}" class="" wire:navigate>
+                            <i class=" fas fa-money-check"></i>
+                            <span>Manaj. Harga Normal N1</span>
+                        </a>
+                    </li>
+                   
                 @endcan
 
             </ul>

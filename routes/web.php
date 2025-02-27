@@ -9,6 +9,7 @@ use App\Livewire\Dashboard;
 use App\Livewire\FormPeriodeSumberDaya;
 use App\Livewire\Login;
 use App\Livewire\Master\MasterHargaNormal;
+use App\Livewire\Master\MasterHargaNormalN1;
 use App\Livewire\Master\User\ViewUser;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/manajemen-periode', App\Livewire\Master\ManajemenPeriode::class)->name('manajemen-periode.index');
 
             Route::get('/manajemen-harga-normal', MasterHargaNormal::class)->name('manajemen-harga-normal.index');
+
+            Route::get('/manajemen-harga-normal-n1', MasterHargaNormalN1::class)->name('manajemen-harga-normal-n1.index');
 
         });
     });
@@ -66,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', App\Livewire\Transaksi\Pkm\ViewData::class)->name('pkm.view');
         });
         Route::group(['prefix' => 'abu-boiler'], function () {
-            Route::get('/', App\Livewire\Transaksi\AbuBoiler\ViewData::class)->name('abu-boiler.view');
+            Route::get('/', App\Livewire\Transaksi\Abuboiler\ViewData::class)->name('abu-boiler.view');
         });
         // PTPN1
         Route::group(['prefix' => 'tea-waste'], function () {
@@ -82,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', App\Livewire\Transaksi\Abu\ViewData::class)->name('abu.view');
         });
         Route::group(['prefix' => 'abu-he'], function () {
-            Route::get('/', App\Livewire\Transaksi\Abuhe\ViewData::class)->name('abuhe.view');
+            Route::get('/', App\Livewire\Transaksi\Abuhe\ViewData::class)->name('abu-he.view');
         });
         Route::group(['prefix' => 'ranting'], function () {
             Route::get('/', App\Livewire\Transaksi\Ranting\ViewData::class)->name('ranting.view');

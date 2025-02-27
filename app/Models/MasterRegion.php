@@ -167,6 +167,7 @@ class MasterRegion extends Model
         return $query->select(
             'm_region.nama',
             DB::raw('SUM(t_stok.stok_tea_waste) as stok_tea_waste_awal_tahun'),
+            DB::raw('SUM(t_stok.stok_abu_he) as stok_abu_he_awal_tahun'),            
             DB::raw('SUM(t_stok.stok_limbah_serum) as stok_limbah_serum_awal_tahun'),
             DB::raw('SUM(t_stok.stok_tunggul_karet) as stok_tunggul_karet_awal_tahun'),
             DB::raw('SUM(t_stok.stok_abu) as stok_abu_awal_tahun'),
@@ -177,6 +178,7 @@ class MasterRegion extends Model
             DB::raw('SUM(t_stok.stok_mucilage) as stok_mucilage_awal_tahun'),
             //--------------------------------
             DB::raw('SUM(t_produksi_n1.produksi_teawaaste) as produksi_tea_waste'),
+            DB::raw('SUM(t_produksi_n1.produksi_abuhe) as produksi_abu_he'),            
             DB::raw('SUM(t_produksi_n1.produksi_limbahserum) as produksi_limbah_serum'),
             DB::raw('SUM(t_produksi_n1.produksi_tunggulkaret) as produksi_tunggul_karet'),
             DB::raw('SUM(t_produksi_n1.produksi_abu) as produksi_abu_abu'),
@@ -187,6 +189,7 @@ class MasterRegion extends Model
             DB::raw('SUM(t_produksi_n1.produksi_mucilage) as produksi_mucilage'),
             //--------------------------------
             DB::raw('SUM(t_tea_waste.pendapatan) as pendapatan_tea_waste'),
+            DB::raw('SUM(t_abu_he.pendapatan) as pendapatan_abu_he'),
             DB::raw('SUM(t_limbah_serum.pendapatan) as pendapatan_limbah_serum'),
             DB::raw('SUM(t_tunggul_karet.pendapatan) as pendapatan_tunggul_karet'),
             DB::raw('SUM(t_abu.pendapatan) as pendapatan_abu'),
@@ -202,8 +205,19 @@ class MasterRegion extends Model
                     - COALESCE(t_tea_waste.dikirim, 0) 
                     - COALESCE(t_tea_waste.volume_keperluan_lain, 0) 
                     - COALESCE(t_tea_waste.dijual, 0))
-                    + (t_stok.stok_teawaste) 
+                    + (t_stok.stok_tea_waste) 
                     ) as sisa_tea_waste'
+            ),
+
+
+            DB::raw(
+                'SUM((t_produksi_n1.produksi_abuhe 
+                    - COALESCE(t_abu_he.digunakan, 0) 
+                    - COALESCE(t_abu_he.dikirim, 0) 
+                    - COALESCE(t_abu_he.volume_keperluan_lain, 0) 
+                    - COALESCE(t_abu_he.dijual, 0))
+                    + (t_stok.stok_abu_he) 
+                    ) as sisa_abu_he'
             ),
 
             DB::raw(
@@ -380,6 +394,7 @@ class MasterRegion extends Model
             ->leftJoin('t_stok', 'm_unit_n1.kode', '=', 't_stok.kode_unit')
             ->leftJoin('t_produksi_n1', 'm_unit_n1.kode', '=', 't_produksi_n1.kode_unit')
             ->leftJoin('t_tea_waste', 't_produksi_n1.uuid', '=', 't_tea_waste.id_t_produksi')
+            ->leftJoin('t_abu_he', 't_produksi_n1.uuid', '=', 't_abu_he.id_t_produksi')
             ->leftJoin('t_limbah_serum', 't_produksi_n1.uuid', '=', 't_limbah_serum.id_t_produksi')
             ->leftJoin('t_tunggul_karet', 't_produksi_n1.uuid', '=', 't_tunggul_karet.id_t_produksi')
             ->leftJoin('t_abu', 't_produksi_n1.uuid', '=', 't_abu.id_t_produksi')
@@ -404,6 +419,7 @@ class MasterRegion extends Model
             'm_unit_n1.jenis_unit as jenis_unit',
             't_produksi_n1.uuid as id_produksi_n1',
             't_tea_waste.uuid as id_tea_waste',
+            't_abu_he.uuid as id_abu_he',
             't_limbah_serum.uuid as id_limbah_serum',
             't_tunggul_karet.uuid as id_tunggul_karet',
             't_abu.uuid as id_abu',
@@ -420,6 +436,7 @@ class MasterRegion extends Model
                     ->whereMonth('t_produksi_n1.tanggal', '=', $bulan);
             })
             ->leftJoin('t_tea_waste', 't_produksi_n1.uuid', '=', 't_tea_waste.id_t_produksi')
+            ->leftJoin('t_abu_he', 't_produksi_n1.uuid', '=', 't_abu_he.id_t_produksi')
             ->leftJoin('t_limbah_serum', 't_produksi_n1.uuid', '=', 't_limbah_serum.id_t_produksi')
             ->leftJoin('t_tunggul_karet', 't_produksi_n1.uuid', '=', 't_tunggul_karet.id_t_produksi')
             ->leftJoin('t_abu', 't_produksi_n1.uuid', '=', 't_abu.id_t_produksi')

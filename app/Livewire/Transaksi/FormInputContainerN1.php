@@ -37,6 +37,8 @@ class FormInputContainerN1 extends Component
             $this->dispatch('setDataProduksiN1', $this->tanggal, $this->unit);
         } elseif ($jenis == KategoriTransaksiEnum::TEA_WASTE->value) {
             $this->dispatch('setDataTeaWaste', $this->tanggal, $this->unit);
+        } elseif ($jenis == KategoriTransaksiEnum::ABU_HE->value) {
+            $this->dispatch('setDataAbuHe', $this->tanggal, $this->unit);
         } elseif ($jenis == KategoriTransaksiEnum::LIMBAH_SERUM->value) {
             $this->dispatch('setDataLimbahSerum', $this->tanggal, $this->unit);
         } elseif ($jenis == KategoriTransaksiEnum::TUNGGUL_KARET->value) {
@@ -62,6 +64,7 @@ class FormInputContainerN1 extends Component
                 'm_unit_n1.nama_unit',
                 't_produksi_n1.uuid as id_produksi_n1',
                 't_tea_waste.uuid as id_tea_waste',
+                't_abu_he.uuid as id_abu_he',                
                 't_limbah_serum.uuid as id_limbah_serum',
                 't_tunggul_karet.uuid as id_tunggul_karet',
                 't_abu.uuid as id_abu',
@@ -79,6 +82,7 @@ class FormInputContainerN1 extends Component
             )
            // ptpn1
             ->leftJoin('t_tea_waste', 't_produksi_n1.uuid', '=', 't_tea_waste.id_t_produksi')
+            ->leftJoin('t_abu_he', 't_produksi_n1.uuid', '=', 't_abu_he.id_t_produksi')
             ->leftJoin('t_limbah_serum', 't_produksi_n1.uuid', '=', 't_limbah_serum.id_t_produksi')
             ->leftJoin('t_tunggul_karet', 't_produksi_n1.uuid', '=', 't_tunggul_karet.id_t_produksi')
             ->leftJoin('t_abu', 't_produksi_n1.uuid', '=', 't_abu.id_t_produksi')

@@ -22,6 +22,7 @@
                                                     <th></th>
                                                     <th>N1-Produksi</th>
                                                     <th>N1-Teh-Tea Waste</th>
+                                                    <th>N1-Teh-Abu HE</th>
                                                     <th>N1-Karet-Limbah Serum</th>
                                                     <th>N1-Karet-Tunggul Karet</th>
                                                     <th>N1-Karet-Abu</th>
@@ -40,6 +41,9 @@
                                                     </td>
                                                     <td
                                                         style="{{ $dataMonitoring->id_tea_waste ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}">
+                                                    </td>
+                                                    <td
+                                                        style="{{ $dataMonitoring->id_abu_he ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}">
                                                     </td>
                                                     <td
                                                         style="{{ $dataMonitoring->id_limbah_serum ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}">
@@ -133,6 +137,8 @@
                         <livewire:transaksi.form-input-produksi-n1 :periode="$tanggal" :unit="$unit" />
                     @elseif ($jenis && $jenis == 'N1-Teh-Tea Waste')
                         <livewire:transaksi.form-input-tea-waste :periode="$tanggal" :unit="$unit" />
+                    @elseif ($jenis && $jenis == 'N1-Teh-Abu HE')
+                        <livewire:transaksi.form-input-abu-he :periode="$tanggal" :unit="$unit" />
                     @elseif ($jenis && $jenis == 'N1-Karet-Limbah Serum')
                         <livewire:transaksi.form-input-limbah-serum :periode="$tanggal" :unit="$unit" />    
                     @elseif ($jenis && $jenis == 'N1-Karet-Tunggul Karet')
