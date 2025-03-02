@@ -79,7 +79,7 @@ class Login extends Component
                         ]);
                     }
                     Auth::login($localUser);
-                    $this->redirectRoute('dashboard.index');
+                    $this->redirectRoute('dashboard-n1.index');
                 } else {
                     throw ValidationException::withMessages([
                         'username' => __('Akun Anda Belum Aktif'),

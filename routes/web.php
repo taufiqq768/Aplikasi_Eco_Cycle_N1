@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardApiController_N1;
 use App\Http\Middleware\AccessForRole;
 use App\Livewire\Approval\ListApproval;
 use App\Livewire\Dashboard;
+use App\Livewire\DashboardN1;
 use App\Livewire\FormPeriodeSumberDaya;
 use App\Livewire\Login;
 use App\Livewire\Master\MasterHargaNormal;
@@ -19,6 +20,7 @@ Route::get('logout', [Login::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard.index');
+    Route::get('dashboard-n1', DashboardN1::class)->name('dashboard-n1.index');
     // Route::get('wasteptpn1', App\LiveWire\TeaWaste::class)->name('waste-ptpn1.index');
 
     Route::group(['prefix' => 'master'], function () {
@@ -154,7 +156,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard-data-penjualan-n1/{bulan}/{tahun}', [DashboardApiController_N1::class, 'dashboardDataPenjualan_N1'])->name('api.dashboardDataPenjualan_N1');
         Route::get('data-stok-chart-pie-n1/{bulan}/{tahun}', [DashboardApiController_N1::class, 'dataStokChartPie_N1'])->name('api.dataStokChartPie_N1');
         Route::get('data-region-stok-chart-n1/{bulan}/{tahun}', [DashboardApiController_N1::class, 'dataRegionStokChart_N1'])->name('api.dataRegionStokChart_N1');
-        Route::get('data-produksi-digunakan-chart-N1/{bulan}/{tahun}', [DashboardApiController_N1::class, 'dataProduksiDigunakanChart_N1'])->name('api.dataProduksiDigunakanChart_N1');
+        Route::get('data-produksi-digunakan-chart-n1/{bulan}/{tahun}', [DashboardApiController_N1::class, 'dataProduksiDigunakanChart_N1'])->name('api.dataProduksiDigunakanChart_N1');
         Route::get('data-scatter-n1/{bulan}/{tahun}/{tipe}', [DashboardApiController_N1::class, 'dataScatter_N1'])->name('api.dataScatter_N1');
         Route::get('data-scatter-bi-n1/{bulan}/{tahun}/{tipe}', [DashboardApiController_N1::class, 'dataScatterBi_N1'])->name('api.dataScatterBi_N1');
 

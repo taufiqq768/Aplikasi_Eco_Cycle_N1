@@ -111,14 +111,15 @@
                                             <th class="bg-primary-subtle" rowspan="2">% Tea waste<br>dr Produksi diolah
                                             </th>
                                             <th class="bg-primary-subtle" rowspan="2">Digunakan</th>
-                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Tea Waste</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan
                                                 Lain</th>
                                             <th class="bg-primary-subtle" rowspan="2">Dijual</th>
                                             <th class="bg-primary-subtle" rowspan="2">Harga Jual Rata-rata</th>
                                             <th class="bg-primary-subtle" rowspan="2">Pendapatan</th>
                                             <th class="bg-primary-subtle" rowspan="2">Stok Awal Tahun</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Diterima</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Stok Akhir</th>
                                         </tr>
                                         <tr class="text-center align-middle">
@@ -195,12 +196,13 @@
                                             <th class="bg-primary-subtle" rowspan="2">Produksi Tea Waste</th>
                                             <th class="bg-primary-subtle" rowspan="2">% Tea Waste<br>dr Produksi diolah</th>
                                             <th class="bg-primary-subtle" rowspan="2">Digunakan</th>
-                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Tea Waste</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan Lain</th>
                                             <th class="bg-primary-subtle" rowspan="2">Dijual</th>
                                             <th class="bg-primary-subtle" rowspan="2">Harga Jual Rata-rata</th>
                                             <th class="bg-primary-subtle" rowspan="2">Pendapatan</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Diterima</th>
                                             <th class="bg-primary-subtle" rowspan="2">Stok Awal Tahun</th>
                                         </tr>
                                         <tr class="text-center align-middle">

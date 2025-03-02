@@ -7,14 +7,20 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="left-menu list-unstyled" id="side-menu">
-                <li>
+                <!-- <li>
                     <a href="{{ route('dashboard.index') }}" class="" wire:navigate>
                         <i class="fas fa-desktop"></i>
                         <span>Dashboard</span>
                     </a>
+                </li> -->
+                <li>
+                    <a href="{{ route('dashboard-n1.index') }}" class="" wire:navigate>
+                        <i class="fas fa-desktop"></i>
+                        <span>Dashboard N1</span>
+                    </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="javascript: void(0);" class="has-arrow ">
                         <i class="fa fa-store-alt"></i>
                         <span>Data Stok</span>
@@ -61,7 +67,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li>
                     <a href="javascript: void(0);" class="has-arrow ">
                         <i class="fa fa-store-alt"></i>
@@ -139,7 +145,7 @@
                         </li>
                     </ul>
                 </li> --}}
-                @can('access_for', [UserRoleEnum::SUPER_ADMIN->name, UserRoleEnum::ADMIN_REGIONAL->name,
+                <!-- @can('access_for', [UserRoleEnum::SUPER_ADMIN->name, UserRoleEnum::ADMIN_REGIONAL->name,
                     UserRoleEnum::ADMIN_UNIT->name])
                     <li>
                         <a href="{{ route('input-form') }}" class="" wire:navigate>
@@ -147,7 +153,7 @@
                             <span>Form Penginputan</span>
                         </a>
                     </li>
-                @endcan
+                @endcan -->
                 @can('access_for', [UserRoleEnum::SUPER_ADMIN->name, UserRoleEnum::ADMIN_REGIONAL->name,
                     UserRoleEnum::ADMIN_UNIT->name])
                     <li>
@@ -165,12 +171,12 @@
                         </a>
                     </li>
                 @endcan
-                <li>
+                <!-- <li>
                     <a href="{{ route('monitoring-pengisian.view') }}" class="" wire:navigate>
                         <i class="fas fa-file-alt"></i>
                         <span>Monitoring Pengisian</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ route('monitoring-pengisian-n1.view') }}" class="" wire:navigate>
                         <i class="fas fa-file-alt"></i>
@@ -190,12 +196,12 @@
                 @endcan
 
                 @can('access_for', [UserRoleEnum::ADMIN_HOLDING->name])
-                    <li>
+                    <!-- <li>
                         <a href="{{ route('stok.view') }}" class="" wire:navigate>
                             <i class="fas fa-database"></i>
                             <span>Stock Awal Tahun</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ route('stokn1.view') }}" class="" wire:navigate>
                             <i class="fas fa-database"></i>
@@ -208,12 +214,12 @@
                             <span>Manajemen Periode</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{ route('manajemen-harga-normal.index') }}" class="" wire:navigate>
                             <i class=" fas fa-money-check"></i>
                             <span>Manajemen Harga Normal</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ route('manajemen-harga-normal-n1.index') }}" class="" wire:navigate>
                             <i class=" fas fa-money-check"></i>

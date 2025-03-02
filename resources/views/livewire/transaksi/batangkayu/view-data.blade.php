@@ -111,8 +111,8 @@
                                             <th class="bg-primary-subtle" rowspan="2">% Produksi<br>dr Produksi diolah
                                             </th>
                                             <th class="bg-primary-subtle" rowspan="2">Digunakan</th>
-                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Batang Kayu</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan
                                                 Lain</th>
                                             <th class="bg-primary-subtle" rowspan="2">Dijual</th>
@@ -195,9 +195,10 @@
                                             <th class="bg-primary-subtle" rowspan="2">Produksi Batang Kayu</th>
                                             <th class="bg-primary-subtle" rowspan="2">% Produksi<br>dr Produksi diolah</th>
                                             <th class="bg-primary-subtle" rowspan="2">Digunakan</th>
-                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Batang Kayu</th>
-                                            <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan Lain</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
+                                            <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan
+                                                Lain</th>
                                             <th class="bg-primary-subtle" rowspan="2">Dijual</th>
                                             <th class="bg-primary-subtle" rowspan="2">Harga Jual Rata-rata</th>
                                             <th class="bg-primary-subtle" rowspan="2">Pendapatan</th>

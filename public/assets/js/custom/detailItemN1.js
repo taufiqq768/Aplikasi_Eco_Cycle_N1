@@ -594,7 +594,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableTeawaste').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -658,12 +658,6 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "class": "align-middle",
                 },
                 {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
-                    "class": "align-middle",
-                },
-                {
                     "data": "dikirim",
                     "name": "dikirim",
                     "render": $.fn.dataTable.render.number('.', ',', 0),
@@ -706,6 +700,19 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "diterima",
+                    "name": "diterima",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -745,7 +752,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableTeawasteBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -846,6 +853,12 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "class": "align-middle",
                 },
                 {
+                    "data": "diterima",
+                    "name": "diterima",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
                     "data": "stok_tea_waste",
                     "name": "stok_tea_waste",
                     "render": $.fn.dataTable.render.number('.', ',', 0),
@@ -881,6 +894,306 @@ function updateChartDataN1(bulan, tahun, tipe) {
         }
     }
 
+    if (tipe === 'abu_he') {
+        if ($.fn.dataTable.isDataTable('#tableAbuhe')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableAbuhe').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableAbuhe').DataTable({
+                "responsive": false,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_abu_he",
+                    "name": "produksi_abu_he",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_abu_he / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_tea_waste / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_abu_he",
+                    "name": "stok_abu_he",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+
+        if ($.fn.dataTable.isDataTable('#tableAbuheBi')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableAbuheBi').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableAbuheBi').DataTable({
+                "responsive": true,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_abu_he",
+                    "name": "produksi_abu_he",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_abu_he / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return (row.produksi_abu_he - row.digunakan)
+                            .toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_abu_he",
+                    "name": "stok_abu_he",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+    }
+
+
     else if (tipe === 'limbah_serum') {
         if ($.fn.dataTable.isDataTable('#tableLimbahserum')) {
             // If it exists, get the DataTable instance
@@ -892,7 +1205,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableLimbahserum').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -934,14 +1247,6 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "class": "align-middle",
                 },
                 {
-                    "data": null,
-                    "render": function (data, type, row) {
-                        return ((row.produksi_limbah_serum / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
-                            '%';
-                    },
-                    "class": "align-middle",
-                },
-                {
                     "data": "digunakan",
                     "name": "digunakan",
                     "render": $.fn.dataTable.render.number('.', ',', 0),
@@ -950,15 +1255,9 @@ function updateChartDataN1(bulan, tahun, tipe) {
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return (row.produksi_limbah_serum - row.digunakan)
-                            .toLocaleString();
+                        return ((row.produksi_limbah_serum / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
                     },
-                    "class": "align-middle",
-                },
-                {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
                 {
@@ -1004,6 +1303,13 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -1043,7 +1349,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableLimbahserumBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1190,7 +1496,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableTunggulkaret').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1248,15 +1554,9 @@ function updateChartDataN1(bulan, tahun, tipe) {
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return (row.produksi_tunggul_karet - row.digunakan)
-                            .toLocaleString();
+                        return ((row.produksi_tunggul_karet / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
                     },
-                    "class": "align-middle",
-                },
-                {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
                 {
@@ -1302,6 +1602,13 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -1341,7 +1648,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableTunggulkaretBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1488,7 +1795,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableAbu').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1546,15 +1853,9 @@ function updateChartDataN1(bulan, tahun, tipe) {
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return (row.produksi_abu - row.digunakan)
-                            .toLocaleString();
+                        return ((row.produksi_abu / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
                     },
-                    "class": "align-middle",
-                },
-                {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
                 {
@@ -1600,6 +1901,13 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -1639,7 +1947,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableAbuBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1783,10 +2091,11 @@ function updateChartDataN1(bulan, tahun, tipe) {
             // Update the AJAX source
             
             table.ajax.url('/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
-        } else {
+        } 
+        else {
             $('#tableRanting').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1844,15 +2153,161 @@ function updateChartDataN1(bulan, tahun, tipe) {
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return (row.produksi_ranting - row.digunakan)
-                            .toLocaleString();
+                        return ((row.produksi_ranting / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
                     },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_ranting",
+                    "name": "stok_ranting",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
                 {
                     "data": "sisa_stok_akhir",
                     "name": "sisa_stok_akhir",
                     "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+
+        if ($.fn.dataTable.isDataTable('#tableRantingBi')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableRantingBi').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableRantingBi').DataTable({
+                "responsive": true,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_ranting",
+                    "name": "produksi_ranting",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_ranting / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return (row.produksi_ranting - row.digunakan)
+                            .toLocaleString();
+                    },
                     "class": "align-middle",
                 },
                 {
@@ -1928,6 +2383,306 @@ function updateChartDataN1(bulan, tahun, tipe) {
         }
     }
 
+    else if (tipe === 'batang_kayu') {
+        if ($.fn.dataTable.isDataTable('#tableBatangkayu')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableBatangkayu').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableBatangkayu').DataTable({
+                "responsive": false,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_batang_kayu",
+                    "name": "produksi_batang_kayu",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_batang_kayu / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_batang_kayu / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_batang_kayu",
+                    "name": "stok_batang_kayu",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+
+        if ($.fn.dataTable.isDataTable('#tableBatangkayuBi')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableBatangkayuBi').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableBatangkayuBi').DataTable({
+                "responsive": true,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_batang_kayu",
+                    "name": "produksi_batang_kayu",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_batang_kayu / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return (row.produksi_batang_kayu - row.digunakan)
+                            .toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_batang_kayu",
+                    "name": "stok_batang_kayu",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+    }
+
+
     else if (tipe === 'kulit_buah') {
         if ($.fn.dataTable.isDataTable('#tableKulitbuah')) {
             // If it exists, get the DataTable instance
@@ -1939,7 +2694,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableKulitbuah').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -1997,15 +2752,9 @@ function updateChartDataN1(bulan, tahun, tipe) {
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return (row.produksi_kulit_buah - row.digunakan)
-                            .toLocaleString();
+                        return ((row.produksi_kulit_buah / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
                     },
-                    "class": "align-middle",
-                },
-                {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
                 {
@@ -2051,6 +2800,13 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -2090,7 +2846,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableKulitbuahBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -2226,8 +2982,9 @@ function updateChartDataN1(bulan, tahun, tipe) {
         }
     }
 
+
     else if (tipe === 'husk_skin') {
-        if ($.fn.dataTable.isDataTable('#tableHusksin')) {
+        if ($.fn.dataTable.isDataTable('#tableHuskskin')) {
             // If it exists, get the DataTable instance
             var table = $('#tableHuskskin').DataTable();
 
@@ -2237,7 +2994,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableHuskskin').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -2295,15 +3052,9 @@ function updateChartDataN1(bulan, tahun, tipe) {
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return (row.produksi_husk_skin - row.digunakan)
-                            .toLocaleString();
+                        return ((row.produksi_husk_skin / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
                     },
-                    "class": "align-middle",
-                },
-                {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
                 {
@@ -2349,6 +3100,13 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -2388,7 +3146,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableHuskskinBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -2533,10 +3291,11 @@ function updateChartDataN1(bulan, tahun, tipe) {
             // Update the AJAX source
             
             table.ajax.url('/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
-        } else {
+        } 
+        else {
             $('#tableMucilage').DataTable({
                 "responsive": false,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },
@@ -2600,12 +3359,6 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "class": "align-middle",
                 },
                 {
-                    "data": "sisa_stok_akhir",
-                    "name": "sisa_stok_akhir",
-                    "render": $.fn.dataTable.render.number('.', ',', 0),
-                    "class": "align-middle",
-                },
-                {
                     "data": "dikirim",
                     "name": "dikirim",
                     "render": $.fn.dataTable.render.number('.', ',', 0),
@@ -2648,6 +3401,13 @@ function updateChartDataN1(bulan, tahun, tipe) {
                     "render": $.fn.dataTable.render.number('.', ',', 0),
                     "class": "align-middle",
                 },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
                 // {
                 //     "data": "persen_ekses_mucilage",
                 //     "name": "persen_ekses_mucilage",
@@ -2687,7 +3447,7 @@ function updateChartDataN1(bulan, tahun, tipe) {
         } else {
             $('#tableMucilageBi').DataTable({
                 "responsive": true,
-                "scrollX": true,
+                "scrollX": false,
                 fixedColumns: {
                     leftColumns: 2
                 },

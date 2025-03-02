@@ -111,8 +111,8 @@
                                             <th class="bg-primary-subtle" rowspan="2">% Produksi<br>dr Karet diolah
                                             </th>
                                             <th class="bg-primary-subtle" rowspan="2">Digunakan</th>
-                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Ranting</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan
                                                 Lain</th>
                                             <th class="bg-primary-subtle" rowspan="2">Dijual</th>
@@ -196,8 +196,8 @@
                                             <th class="bg-primary-subtle" rowspan="2">% Produksi<br>dr TBS Olah
                                             </th>
                                             <th class="bg-primary-subtle" rowspan="2">Digunakan</th>
-                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" rowspan="2">Sisa Ranting</th>
+                                            <th class="bg-primary-subtle" rowspan="2">Dikirim</th>
                                             <th class="bg-primary-subtle" colspan="2">Digunakan Untuk Keperluan
                                                 Lain</th>
                                             <th class="bg-primary-subtle" rowspan="2">Dijual</th>
