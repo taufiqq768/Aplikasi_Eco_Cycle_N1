@@ -18,6 +18,7 @@ class ModalCreate extends Component
     public $abu;
     public $ranting;
     public $batang_kayu;
+    public $rubber_trap;
     public $kulit_buah;
     public $husk_skin;
     public $mucilage;
@@ -46,6 +47,7 @@ class ModalCreate extends Component
             'abu' => 'required|numeric',
             'ranting' => 'required|numeric',
             'batang_kayu' => 'required|numeric',
+            'rubber_trap' => 'required|numeric',
             'kulit_buah' => 'required|numeric',
             'husk_skin' => 'required|numeric',
             'mucilage' => 'required|numeric',
@@ -61,6 +63,7 @@ class ModalCreate extends Component
             'stok_abu' => $this->abu,
             'stok_ranting' => $this->ranting,
             'stok_batang_kayu' => $this->batang_kayu,
+            'stok_rubber_trap' => $this->rubber_trap,
             'stok_kulit_buah' => $this->kulit_buah,
             'stok_husk_skin' => $this->husk_skin,
             'stok_mucilage' => $this->mucilage,

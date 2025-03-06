@@ -33,7 +33,7 @@
         
 <!-- PTPN1 -->
         <div class="row mt-4">
-        
+            <h4>TEH</h4>
             <!-- Produksi Tea Waste -->
             <div class="col-6 mt-3" x-data="{ value: @entangle('tea_waste') }">
                 <label for="tea_waste">Produksi Tea Waste (Kg)</label>
@@ -52,7 +52,9 @@
             </div>
         </div>
         <div class="row mt-4">
-            <!-- Produksi Tunggul Karet -->
+            <h4>KARET</h4>
+
+        <!-- Produksi Tunggul Karet -->
             <div class="col-6 mt-3" x-data="{ value: @entangle('tunggul_karet') }">
                 <label for="tunggul_karet">Produksi Tunggul Karet (Kg)</label>
                 <input type="text" name="tunggul_karet" id="tunggul_karet" class="form-control form-control-lg" x-model="value"
@@ -87,8 +89,18 @@
                     x-mask:dynamic="$money($input, ',')">
             </div>            
 
+            <!-- Produksi Rubber trap -->
+            <div class="col-6 mt-3" x-data="{ value: @entangle('rubber_trap') }">
+                <label for="rubber_trap">Produksi Rubber Trap (Kg)</label>
+                <input type="text" name="rubber_trap" id="rubber_trap" class="form-control form-control-lg" x-model="value"
+                    x-mask:dynamic="$money($input, ',')">
+            </div>            
+
+
         </div>
-        <div class="row mt-4">        
+
+        <div class="row mt-4">
+            <h4>KOPI</h4>        
             <!-- Produksi Kulit Buah -->
             <div class="col-6 mt-3" x-data="{ value: @entangle('kulit_buah') }">
                 <label for="kulit_buah">Produksi Kulit Buah (Kg)</label>

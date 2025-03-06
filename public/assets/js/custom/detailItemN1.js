@@ -2682,6 +2682,305 @@ function updateChartDataN1(bulan, tahun, tipe) {
         }
     }
 
+    else if (tipe === 'rubber_trap') {
+        if ($.fn.dataTable.isDataTable('#tableRubbertrap')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableRubbertrap').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableRubbertrap').DataTable({
+                "responsive": false,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_rubber_trap",
+                    "name": "produksi_rubber_trap",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_rubber_trap / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_rubber_trap / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_rubber_trap",
+                    "name": "stok_rubber_trap",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "sisa_stok_akhir",
+                    "name": "sisa_stok_akhir",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+
+        if ($.fn.dataTable.isDataTable('#tableRubbertrapBi')) {
+            // If it exists, get the DataTable instance
+            var table = $('#tableRubbertrapBi').DataTable();
+
+            // Update the AJAX source
+            
+            table.ajax.url('/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe).load(); // .load() to refresh data
+        } else {
+            $('#tableRubbertrapBi').DataTable({
+                "responsive": true,
+                "scrollX": false,
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                "autoWidth": false,
+                "processing": false,
+                deferLoading: 57,
+                "serverSide": false,
+                "order": [],
+                "ajax": {
+                    "url": '/api/data-item-detail-bi-n1/' + bulan + '/' + tahun + "/" + tipe,
+                    "type": "GET"
+                },
+                "columns": [{
+                    "data": "region",
+                    "name": "region",
+                    "class": "text-nowrap align-middle"
+                },
+                {
+                    "data": "nama_unit",
+                    "name": "nama_unit",
+                    class: 'text-nowrap align-middle',
+                    render: function (data, type, row) {
+                        if (row.has_log) {
+                            return `${row.nama_unit} <a href="#" @click="openModal('${row.kode_unit}', '${bulan}', '${tahun}')"><span class="badge badge-sm badge-warning badge-circle"> <i class="fas fa-info"></i> </span></a>`;
+                        }
+                        return row.nama_unit;
+                    }
+                },
+                {
+                    "data": "tbs_olah",
+                    "name": "tbs_olah",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "produksi_rubber_trap",
+                    "name": "produksi_rubber_trap",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return ((row.produksi_rubber_trap / row.tbs_olah) * 100).toFixed(2).replace('.', ',') +
+                            '%';
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "digunakan",
+                    "name": "digunakan",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return (row.produksi_rubber_trap - row.digunakan)
+                            .toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dikirim",
+                    "name": "dikirim",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "volume_keperluan_lain",
+                    "name": "volume_keperluan_lain",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "keterangan_keperluan_lain",
+                    "name": "keterangan_keperluan_lain",
+                    "class": "align-middle",
+                },
+                {
+                    "data": "dijual",
+                    "name": "dijual",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": "harga_jual_rata_rata",
+                    "name": "harga_jual_rata_rata",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                {
+                    "data": null,
+                    "name": "pendapatan",
+                    "render": function (row) {
+                        return (row.dijual * row.harga_jual_rata_rata).toLocaleString();
+                    },
+                    "class": "align-middle",
+                },
+                {
+                    "data": "stok_rubber_trap",
+                    "name": "stok_rubber_trap",
+                    "render": $.fn.dataTable.render.number('.', ',', 0),
+                    "class": "align-middle",
+                },
+                // {
+                //     "data": "persen_ekses_mucilage",
+                //     "name": "persen_ekses_mucilage",
+                //     "render": function (data, type, row) {
+                //         return row.persen_ekses_mucilage.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // },
+                // {
+                //     "data": "material_balance",
+                //     "name": "material_balance",
+                //     "render": function (data, type, row) {
+                //         return row.material_balance.toFixed(2).replace('.', ',') + '%';
+                //     },
+                //     "class": "align-middle",
+                // }
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'></i>",
+                        "next": "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+                }
+            });
+        }
+    }
+
 
     else if (tipe === 'kulit_buah') {
         if ($.fn.dataTable.isDataTable('#tableKulitbuah')) {

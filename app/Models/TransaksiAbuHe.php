@@ -15,7 +15,7 @@ class TransaksiAbuHe extends Model
     protected $keyType = 'string';
     protected $guarded = [];
 
-    public function scopeWithProduksiAbuhe($query)
+    public function scopeWithProduksiUnit($query)
     {
         return $query->leftJoin('t_produksi_n1', 't_produksi.uuid', '=', 't_abu_he.id_t_produksi')
             ->leftJoin('m_unit_n1', 'm_unit_n1.kode', '=', 't_produksi_n1.kode_unit')

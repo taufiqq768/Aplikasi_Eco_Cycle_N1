@@ -21,6 +21,7 @@ enum KategoriTransaksiEnum: string
     case ABU = 'N1-Karet-Abu';
     case RANTING = 'N1-Karet-Ranting';
     case BATANG_KAYU = 'N1-Karet-Batang Kayu';
+    case RUBBER_TRAP = 'N1-Karet-Rubber Trap';
     case KULIT_BUAH = 'N1-Kopi-Kulit Buah';
     case HUSK_SKIN = 'N1-Kopi-Husk Skin';
     case MUCILAGE = 'N1-Kopi-Mucilage';

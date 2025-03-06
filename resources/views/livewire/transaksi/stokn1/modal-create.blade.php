@@ -93,6 +93,14 @@
                             @enderror
                         </div>
                         <div class="col-6 mb-3">
+                            <label class="form-label" for="rubber_trap">Stok Rubber Trap</label>
+                            <input class="form-control" id="rubber_trap" type="number" step="1" min="0"
+                                wire:model='rubber_trap' name="rubber_trap">
+                            @error('rubber_trap')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6 mb-3">
                             <label class="form-label" for="kulit_buah">Stok Kulit Buah</label>
                             <input class="form-control" id="kulit_buah" type="number" step="1" min="0"
                                 wire:model='kulit_buah' name="kulit_buah">

@@ -70,6 +70,7 @@
                                         <th class="bg-light">N1-Abu</th>
                                         <th class="bg-light">N1-Ranting</th>
                                         <th class="bg-light">N1-Batang Kayu</th>
+                                        <th class="bg-light">N1-Rubber Trap</th>
                                         <th class="bg-light">N1-Kulit Buah</th>
                                         <th class="bg-light">N1-Husk Skin</th>
                                         <th class="bg-light">N1-Mucilage</th>
@@ -137,6 +138,10 @@
                         },                        
                         {
                             "data": "stok_batang_kayu",
+                            'class': 'text-center'
+                        },                        
+                        {
+                            "data": "stok_rubber_trap",
                             'class': 'text-center'
                         },                        
                         {

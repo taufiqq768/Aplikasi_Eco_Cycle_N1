@@ -530,6 +530,38 @@
                                     </tbody>
                                 </table>
                             
+                            @elseif($dataModal && $jenis == 't_rubber_trap')
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="text-center align-middle">
+                                            <th class="bg-primary-subtle text-center">PKS</th>
+                                            <th class="bg-primary-subtle">TBS Olah</th>
+                                            <th class="bg-primary-subtle">Produksi Rubber Trap</th>
+                                            <th class="bg-primary-subtle">Digunakan</th>
+                                            <th class="bg-primary-subtle">Dikirim</th>
+                                            <th class="bg-primary-subtle">Dijual</th>
+                                            <th class="bg-primary-subtle">Harga Jual Rata-rata</th>
+                                            <th class="bg-primary-subtle">Volume Keperluan Lain</th>
+                                            <th class="bg-primary-subtle">Keterangan Keperluan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($dataModal as $data)
+                                            <tr class="text-center align-middle">
+                                                <td class="text-nowrap">{{ $data->nama_unit }}</td>
+                                                <td>@thousands($data->tbs_olah)</td>
+                                                <td>@thousands($data->produksi_rubbertrap)</td>
+                                                <td>@thousands($data->digunakan)</td>
+                                                <td>@thousands($data->dikirim)</td>
+                                                <td>@thousands($data->dijual)</td>
+                                                <td>@thousands($data->harga_jual_rata_rata)</td>
+                                                <td>@thousands($data->volume_keperluan_lain)</td>
+                                                <td>{{ $data->keterangan_keperluan }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
 
                             @elseif($dataModal && $jenis == 't_kulit_buah')
                                 <table class="table table-bordered">

@@ -48,6 +48,7 @@ class DashboardN1 extends Component
         $dataStock->sisaAllAbu = $dataStock->sum('sisa_abu');
         $dataStock->sisaAllRanting = $dataStock->sum('sisa_ranting');
         $dataStock->sisaAllBatangKayu = $dataStock->sum('sisa_batang_kayu');
+        $dataStock->sisaAllRubberTrap = $dataStock->sum('sisa_rubber_trap');
         $dataStock->sisaAllKulitBuah = $dataStock->sum('sisa_kulit_buah');
         $dataStock->sisaAllHuskSkin = $dataStock->sum('sisa_husk_skin');
         $dataStock->sisaAllMucilage = $dataStock->sum('sisa_mucilage');
@@ -59,6 +60,7 @@ class DashboardN1 extends Component
         $dataStock->pendapatanAbu = $dataStock->sum('pendapatan_abu');
         $dataStock->pendapatanRanting = $dataStock->sum('pendapatan_ranting');
         $dataStock->pendapatanBatangKayu = $dataStock->sum('pendapatan_batang_kayu');
+        $dataStock->pendapatanRubberTrap = $dataStock->sum('pendapatan_rubber_trap');
         $dataStock->pendapatanKulitBuah = $dataStock->sum('pendapatan_kulit_buah');
         $dataStock->pendapatanHuskSkin = $dataStock->sum('pendapatan_husk_skin');
         $dataStock->pendapatanMucilage = $dataStock->sum('pendapatan_mucilage');
@@ -70,6 +72,7 @@ class DashboardN1 extends Component
         $dataStock->totalPenjualanAbu = $dataStock->sum('penjualan_abu');
         $dataStock->totalPenjualanRanting = $dataStock->sum('penjualan_ranting');
         $dataStock->totalPenjualanBatangKayu = $dataStock->sum('penjualan_batang_kayu');
+        $dataStock->totalPenjualanRubberTrap = $dataStock->sum('penjualan_rubber_trap');
         $dataStock->totalPenjualanKulitBuah = $dataStock->sum('penjualan_kulit_buah');
         $dataStock->totalPenjualanHuskSkin = $dataStock->sum('penjualan_husk_skin');
         $dataStock->totalPenjualanMucilage = $dataStock->sum('penjualan_mucilage');
@@ -82,6 +85,7 @@ class DashboardN1 extends Component
         + $dataStock->totalPenjualanAbu
         + $dataStock->totalPenjualanRanting
         + $dataStock->totalPenjualanBatangKayu
+        + $dataStock->totalPenjualanRubberTrap
         + $dataStock->totalPenjualanKulitBuah
         + $dataStock->totalPenjualanHuskSkin
         + $dataStock->totalPenjualanMucilage;
@@ -94,6 +98,7 @@ class DashboardN1 extends Component
         + $dataStock->pendapatanAbu
         + $dataStock->pendapatanRanting
         + $dataStock->pendapatanBatangKayu
+        + $dataStock->pendapatanRubberTrap
         + $dataStock->pendapatanKulitBuah
         + $dataStock->pendapatanHuskSkin
         + $dataStock->pendapatanMucilage;
@@ -105,6 +110,7 @@ class DashboardN1 extends Component
         $dataStock->totalHargaRataAbu = $dataStock->totalPenjualanAbu ? $dataStock->pendapatanAbu / $dataStock->totalPenjualanAbu : 0;
         $dataStock->totalHargaRataRanting = $dataStock->totalPenjualanRanting ? $dataStock->pendapatanRanting / $dataStock->totalPenjualanRanting : 0;
         $dataStock->totalHargaRataBatangKayu = $dataStock->totalPenjualanBatangKayu ? $dataStock->pendapatanBatangKayu / $dataStock->totalPenjualanBatangKayu : 0;
+        $dataStock->totalHargaRataRubberTrap = $dataStock->totalPenjualanRubberTrap ? $dataStock->pendapatanRubberTrap / $dataStock->totalPenjualanRubberTrap : 0;
         $dataStock->totalHargaRataKulitBuah = $dataStock->totalPenjualanKulitBuah ? $dataStock->pendapatanKulitBuah / $dataStock->totalPenjualanKulitBuah : 0;
         $dataStock->totalHargaRataHuskSkin = $dataStock->totalPenjualanHuskSkin ? $dataStock->pendapatanHuskSkin / $dataStock->totalPenjualanHuskSkin : 0;
         $dataStock->totalHargaRataMucilage = $dataStock->totalPenjualanMucilage ? $dataStock->pendapatanMucilage / $dataStock->totalPenjualanMucilage : 0;

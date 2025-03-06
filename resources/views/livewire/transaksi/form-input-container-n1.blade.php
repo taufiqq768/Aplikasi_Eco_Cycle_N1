@@ -28,6 +28,7 @@
                                                     <th>N1-Karet-Abu</th>
                                                     <th>N1-Karet-Ranting</th>
                                                     <th>N1-Karet-Batang Kayu</th>
+                                                    <th>N1-Karet-Rubber Trap</th>
                                                     <th>N1-Kopi-Kulit Buah</th>
                                                     <th>N1-Kopi-Husk Skin</th>
                                                     <th>N1-Kopi-Mucilage</th>
@@ -59,6 +60,9 @@
                                                     </td>
                                                     <td
                                                         style="{{ $dataMonitoring->id_batang_kayu ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}">
+                                                    </td>
+                                                    <td
+                                                        style="{{ $dataMonitoring->id_rubber_trap ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}">
                                                     </td>
                                                     <td
                                                         style="{{ $dataMonitoring->id_kulit_buah ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}">
@@ -149,6 +153,8 @@
                         <livewire:transaksi.form-input-ranting :periode="$tanggal" :unit="$unit" />    
                     @elseif ($jenis && $jenis == 'N1-Karet-Batang Kayu')
                         <livewire:transaksi.form-input-batang-kayu :periode="$tanggal" :unit="$unit" />    
+                    @elseif ($jenis && $jenis == 'N1-Karet-Rubber Trap')
+                        <livewire:transaksi.form-input-rubber-trap :periode="$tanggal" :unit="$unit" />    
                     @elseif ($jenis && $jenis == 'N1-Kopi-Kulit Buah')
                         <livewire:transaksi.form-input-kulit-buah :periode="$tanggal" :unit="$unit" />    
                     @elseif ($jenis && $jenis == 'N1-Kopi-Husk Skin')

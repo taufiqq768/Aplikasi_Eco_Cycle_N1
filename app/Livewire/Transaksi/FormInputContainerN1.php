@@ -49,6 +49,8 @@ class FormInputContainerN1 extends Component
             $this->dispatch('setDataRanting', $this->tanggal, $this->unit);
         } elseif ($jenis == KategoriTransaksiEnum::BATANG_KAYU->value) {
             $this->dispatch('setDataBatangKayu', $this->tanggal, $this->unit);
+        } elseif ($jenis == KategoriTransaksiEnum::RUBBER_TRAP->value) {
+            $this->dispatch('setDataRubberTrap', $this->tanggal, $this->unit);
         } elseif ($jenis == KategoriTransaksiEnum::KULIT_BUAH->value) {
             $this->dispatch('setDataKulitBuah', $this->tanggal, $this->unit);
         } elseif ($jenis == KategoriTransaksiEnum::HUSK_SKIN->value) {
@@ -70,6 +72,7 @@ class FormInputContainerN1 extends Component
                 't_abu.uuid as id_abu',
                 't_ranting.uuid as id_ranting',
                 't_batang_kayu.uuid as id_batang_kayu',
+                't_rubber_trap.uuid as id_rubber_trap',
                 't_kulit_buah.uuid as id_kulit_buah',
                 't_husk_skin.uuid as id_husk_skin',
                 't_mucilage.uuid as id_mucilage',
@@ -88,6 +91,7 @@ class FormInputContainerN1 extends Component
             ->leftJoin('t_abu', 't_produksi_n1.uuid', '=', 't_abu.id_t_produksi')
             ->leftJoin('t_ranting', 't_produksi_n1.uuid', '=', 't_ranting.id_t_produksi')
             ->leftJoin('t_batang_kayu', 't_produksi_n1.uuid', '=', 't_batang_kayu.id_t_produksi')
+            ->leftJoin('t_rubber_trap', 't_produksi_n1.uuid', '=', 't_rubber_trap.id_t_produksi')
             ->leftJoin('t_kulit_buah', 't_produksi_n1.uuid', '=', 't_kulit_buah.id_t_produksi')
             ->leftJoin('t_husk_skin', 't_produksi_n1.uuid', '=', 't_husk_skin.id_t_produksi')
             ->leftJoin('t_mucilage', 't_produksi_n1.uuid', '=', 't_mucilage.id_t_produksi')

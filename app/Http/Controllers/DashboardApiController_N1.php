@@ -26,6 +26,7 @@ class DashboardApiController_N1 extends Controller
             'Abu',
             'Ranting',
             'Batang Kayu',
+            'Rubber Trap',
             'Kulit Buah',
             'Husk Skin',
             'Mucilage',
@@ -47,6 +48,7 @@ class DashboardApiController_N1 extends Controller
         $dataStock->pendapatanAbu = $dataStock->sum('pendapatan_abu');
         $dataStock->pendapatanRanting = $dataStock->sum('pendapatan_ranting');
         $dataStock->pendapatanBatangKayu = $dataStock->sum('pendapatan_batang_kayu');
+        $dataStock->pendapatanRubberTrap = $dataStock->sum('pendapatan_rubber_trap');
         $dataStock->pendapatanKulitBuah = $dataStock->sum('pendapatan_kulit_buah');
         $dataStock->pendapatanHuskSkin = $dataStock->sum('pendapatan_husk_skin');
         $dataStock->pendapatanMucilage = $dataStock->sum('pendapatan_mucilage');
@@ -58,6 +60,7 @@ class DashboardApiController_N1 extends Controller
         + $dataStock->sum('pendapatan_abu') 
         + $dataStock->sum('pendapatan_ranting') 
         + $dataStock->sum('pendapatan_batang_kayu')
+        + $dataStock->sum('pendapatan_rubber_trap')
         + $dataStock->sum('pendapatan_kulit_buah') 
         + $dataStock->sum('pendapatan_husk_skin') 
         + $dataStock->sum('pendapatan_mucilage');
@@ -69,6 +72,7 @@ class DashboardApiController_N1 extends Controller
         $dataStock->penjualanAbu = $dataStock->sum('penjualan_abu');
         $dataStock->penjualanRanting = $dataStock->sum('penjualan_ranting');
         $dataStock->penjualanBatangKayu = $dataStock->sum('penjualan_batang_kayu');
+        $dataStock->penjualanRubberTrap = $dataStock->sum('penjualan_rubber_trap');
         $dataStock->penjualanKulitBuah = $dataStock->sum('penjualan_kulit_buah');
         $dataStock->penjualanHuskSkin = $dataStock->sum('penjualan_husk_skin');
         $dataStock->penjualanMucilage = $dataStock->sum('penjualan_mucilage');
@@ -79,7 +83,8 @@ class DashboardApiController_N1 extends Controller
         + $dataStock->sum('penjualan_tunggul_karet') 
         + $dataStock->sum('penjualan_abu') 
         + $dataStock->sum('penjualan_ranting') 
-        + $dataStock->sum('penjualan_batang_kayu') 
+        + $dataStock->sum('penjualan_batang_kayu')
+        + $dataStock->sum('penjualan_rubber_trap') 
         + $dataStock->sum('penjualan_kulit_buah') 
         + $dataStock->sum('penjualan_husk_skin') 
         + $dataStock->sum('penjualan_mucilage');
@@ -92,6 +97,7 @@ class DashboardApiController_N1 extends Controller
             $dataStock->penjualanAbu,
             $dataStock->penjualanRanting,
             $dataStock->penjualanBatangKayu,
+            $dataStock->penjualanRubberTrap,
             $dataStock->penjualanKulitBuah,
             $dataStock->penjualanHuskSkin,
             $dataStock->penjualanMucilage,
@@ -105,6 +111,7 @@ class DashboardApiController_N1 extends Controller
             $dataStock->pendapatanAbu,
             $dataStock->pendapatanRanting,
             $dataStock->pendapatanBatangKayu,
+            $dataStock->pendapatanRubberTrap,
             $dataStock->pendapatanKulitBuah,
             $dataStock->pendapatanHuskSkin,
             $dataStock->pendapatanMucilage,
@@ -124,6 +131,7 @@ class DashboardApiController_N1 extends Controller
                 $hargaNormalByKategori['Abu']['harga_per_kg'] ?? 0,
                 $hargaNormalByKategori['Ranting']['harga_per_kg'] ?? 0,
                 $hargaNormalByKategori['Batang Kayu']['harga_per_kg'] ?? 0,
+                $hargaNormalByKategori['Rubber Trap']['harga_per_kg'] ?? 0,
                 $hargaNormalByKategori['Kulit Buah']['harga_per_kg'] ?? 0,
                 $hargaNormalByKategori['Husk Skin']['harga_per_kg'] ?? 0,
                 $hargaNormalByKategori['Mucilage']['harga_per_kg'] ?? 0,
@@ -156,6 +164,7 @@ class DashboardApiController_N1 extends Controller
             'Abu',
             'Ranting',
             'Batang Kayu',
+            'Rubber Trap',
             'Kulit Buah',
             'Husk Skin',
             'Mucilage',
@@ -178,6 +187,7 @@ class DashboardApiController_N1 extends Controller
         $dataStock->sisaAllAbu = $dataStock->sum('sisa_abu');
         $dataStock->sisaAllRanting = $dataStock->sum('sisa_ranting');
         $dataStock->sisaAllBatangKayu = $dataStock->sum('sisa_batang_kayu');
+        $dataStock->sisaAllRubberTrap = $dataStock->sum('sisa_rubber_trap');
         $dataStock->sisaAllKulitBuah = $dataStock->sum('sisa_kulit_buah');
         $dataStock->sisaAllHuskSkin = $dataStock->sum('sisa_husk_skin');
         $dataStock->sisaAllMucilage = $dataStock->sum('sisa_mucilage');
@@ -191,6 +201,7 @@ class DashboardApiController_N1 extends Controller
             $dataStock->sisaAllAbu,
             $dataStock->sisaAllRanting,
             $dataStock->sisaAllBatangKayu,
+            $dataStock->sisaAllRubberTrap,
             $dataStock->sisaAllKulitBuah,
             $dataStock->sisaAllHuskSkin,
             $dataStock->sisaAllMucilage,
@@ -209,6 +220,7 @@ class DashboardApiController_N1 extends Controller
             'Abu',
             'Ranting',
             'Batang Kayu',
+            'Rubber Trap',
             'Kulit Buah',
             'Husk Skin',
             'Mucilage',
@@ -243,9 +255,10 @@ class DashboardApiController_N1 extends Controller
             $dataRegionStockChart[4]['data'][] = $data->sisa_abu / 1000;
             $dataRegionStockChart[5]['data'][] = $data->sisa_ranting / 1000;
             $dataRegionStockChart[6]['data'][] = $data->sisa_batang_kayu / 1000;
-            $dataRegionStockChart[7]['data'][] = $data->sisa_kulit_buah / 1000;
-            $dataRegionStockChart[8]['data'][] = $data->sisa_husk_skin / 1000;
-            $dataRegionStockChart[9]['data'][] = $data->sisa_mucilage / 1000;
+            $dataRegionStockChart[7]['data'][] = $data->sisa_rubber_trap / 1000;
+            $dataRegionStockChart[8]['data'][] = $data->sisa_kulit_buah / 1000;
+            $dataRegionStockChart[9]['data'][] = $data->sisa_husk_skin / 1000;
+            $dataRegionStockChart[10]['data'][] = $data->sisa_mucilage / 1000;
         }
 
         $dataApi['labels'] = $listRegion;
@@ -264,6 +277,7 @@ class DashboardApiController_N1 extends Controller
             'Abu',
             'Ranting',
             'Batang Kayu',
+            'Rubber Trap',
             'Kulit Buah',
             'Husk Skin',
             'Mucilage',
@@ -287,9 +301,10 @@ class DashboardApiController_N1 extends Controller
         $dataApi['digunakan'][4] = $dataStock->sum('abu_digunakan');
         $dataApi['digunakan'][5] = $dataStock->sum('ranting_digunakan');
         $dataApi['digunakan'][6] = $dataStock->sum('batang_kayu_digunakan');
-        $dataApi['digunakan'][7] = $dataStock->sum('kulit_buah_digunakan');
-        $dataApi['digunakan'][8] = $dataStock->sum('husk_skin_digunakan');
-        $dataApi['digunakan'][9] = $dataStock->sum('mucilage_digunakan');
+        $dataApi['digunakan'][7] = $dataStock->sum('rubber_trap_digunakan');
+        $dataApi['digunakan'][8] = $dataStock->sum('kulit_buah_digunakan');
+        $dataApi['digunakan'][9] = $dataStock->sum('husk_skin_digunakan');
+        $dataApi['digunakan'][10] = $dataStock->sum('mucilage_digunakan');
 
         $dataApi['diproduksi'][0] = $dataStock->sum('produksi_tea_waste') + $dataStock->sum('stok_tea_waste_awal_tahun');
         $dataApi['diproduksi'][1] = $dataStock->sum('produksi_abu_he') + $dataStock->sum('stok_abu_he_awal_tahun');
@@ -298,9 +313,10 @@ class DashboardApiController_N1 extends Controller
         $dataApi['diproduksi'][4] = $dataStock->sum('produksi_abu') + $dataStock->sum('stok_abu_awal_tahun');
         $dataApi['diproduksi'][5] = $dataStock->sum('produksi_ranting') + $dataStock->sum('stok_ranting_awal_tahun');
         $dataApi['diproduksi'][6] = $dataStock->sum('produksi_batang_kayu') + $dataStock->sum('stok_batang_kayu_awal_tahun');
-        $dataApi['diproduksi'][7] = $dataStock->sum('produksi_kulit_buah') + $dataStock->sum('stok_kulit_buah_awal_tahun');
-        $dataApi['diproduksi'][8] = $dataStock->sum('produksi_husk_skin') + $dataStock->sum('stok_husk_skin_awal_tahun');
-        $dataApi['diproduksi'][9] = $dataStock->sum('produksi_mucilage') + $dataStock->sum('stok_mucilage_awal_tahun');
+        $dataApi['diproduksi'][7] = $dataStock->sum('produksi_rubber_trap') + $dataStock->sum('stok_rubber_trap_awal_tahun');
+        $dataApi['diproduksi'][8] = $dataStock->sum('produksi_kulit_buah') + $dataStock->sum('stok_kulit_buah_awal_tahun');
+        $dataApi['diproduksi'][9] = $dataStock->sum('produksi_husk_skin') + $dataStock->sum('stok_husk_skin_awal_tahun');
+        $dataApi['diproduksi'][10] = $dataStock->sum('produksi_mucilage') + $dataStock->sum('stok_mucilage_awal_tahun');
 
         $dataApi['stokSaatIni'][0] = $dataStock->sum('sisa_tea_waste');
         $dataApi['stokSaatIni'][1] = $dataStock->sum('sisa_abu_he');
@@ -309,9 +325,10 @@ class DashboardApiController_N1 extends Controller
         $dataApi['stokSaatIni'][4] = $dataStock->sum('sisa_abu');
         $dataApi['stokSaatIni'][5] = $dataStock->sum('sisa_ranting');
         $dataApi['stokSaatIni'][6] = $dataStock->sum('sisa_batang_kayu');
-        $dataApi['stokSaatIni'][7] = $dataStock->sum('sisa_kulit_buah');
-        $dataApi['stokSaatIni'][8] = $dataStock->sum('sisa_husk_skin');
-        $dataApi['stokSaatIni'][9] = $dataStock->sum('sisa_mucilage');
+        $dataApi['stokSaatIni'][7] = $dataStock->sum('sisa_rubber_trap');
+        $dataApi['stokSaatIni'][8] = $dataStock->sum('sisa_kulit_buah');
+        $dataApi['stokSaatIni'][9] = $dataStock->sum('sisa_husk_skin');
+        $dataApi['stokSaatIni'][10] = $dataStock->sum('sisa_mucilage');
 
         $dataApi['dijual'][0] = $dataStock->sum('penjualan_tea_waste');
         $dataApi['dijual'][1] = $dataStock->sum('penjualan_abu_he');
@@ -320,9 +337,10 @@ class DashboardApiController_N1 extends Controller
         $dataApi['dijual'][4] = $dataStock->sum('penjualan_abu');
         $dataApi['dijual'][5] = $dataStock->sum('penjualan_ranting');
         $dataApi['dijual'][6] = $dataStock->sum('penjualan_batang_kayu');
-        $dataApi['dijual'][7] = $dataStock->sum('penjualan_kulit_buah');
-        $dataApi['dijual'][8] = $dataStock->sum('penjualan_husk_skin');
-        $dataApi['dijual'][9] = $dataStock->sum('penjualan_mucilage');
+        $dataApi['dijual'][7] = $dataStock->sum('penjualan_rubber_trap');
+        $dataApi['dijual'][8] = $dataStock->sum('penjualan_kulit_buah');
+        $dataApi['dijual'][9] = $dataStock->sum('penjualan_husk_skin');
+        $dataApi['dijual'][10] = $dataStock->sum('penjualan_mucilage');
 
         return response()->json($dataApi);
     }
@@ -522,7 +540,7 @@ class DashboardApiController_N1 extends Controller
     public function getDataItemDetail_N1($bulan, $tahun, $tipe)
     {
         try {
-            if (in_array($tipe, ['tea_waste', 'abu_he', 'limbah_serum', 'tunggul_karet', 'abu', 'ranting', 'batang_kayu', 'kulit_buah', 'husk_skin', 'mucilage'])) {
+            if (in_array($tipe, ['tea_waste', 'abu_he', 'limbah_serum', 'tunggul_karet', 'abu', 'ranting', 'batang_kayu', 'rubber_trap', 'kulit_buah', 'husk_skin', 'mucilage'])) {
                 if (Auth::user()->role == 'ADMIN_REGIONAL' || Auth::user()->role == 'VIEWER_REGIONAL') {
                     $kode_region = substr(Auth::user()->kode_unit, 0, 1);
                     $dataItem = collect($this->storedProcedure->getUnitAllDataWithFormatRegion_N1($bulan, $tahun, false, $tipe, $kode_region));
@@ -561,7 +579,7 @@ class DashboardApiController_N1 extends Controller
     public function getDataItemDetailBi_N1($bulan, $tahun, $tipe)
     {
         try {
-            if (in_array($tipe, ['tea_waste', 'abu_he', 'limbah_serum', 'tunggul_karet', 'abu', 'ranting', 'batang_kayu', 'kulit_buah', 'husk_skin', 'mucilage'])) {
+            if (in_array($tipe, ['tea_waste', 'abu_he', 'limbah_serum', 'tunggul_karet', 'abu', 'ranting', 'batang_kayu', 'rubber_trap', 'kulit_buah', 'husk_skin', 'mucilage'])) {
                 if (Auth::user()->role == 'ADMIN_REGIONAL' || Auth::user()->role == 'VIEWER_REGIONAL') {
                     $kode_region = substr(Auth::user()->kode_unit, 0, 1);
                     $dataItem = collect($this->storedProcedure->getUnitAllDataWithFormatRegion_N1($bulan, $tahun, true, $tipe, $kode_region));

@@ -95,6 +95,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'batang-kayu'], function () {
             Route::get('/', App\Livewire\Transaksi\Batangkayu\ViewData::class)->name('batang-kayu.view');
         });
+        Route::group(['prefix' => 'rubber-trap'], function () {
+            Route::get('/', App\Livewire\Transaksi\Rubbertrap\ViewData::class)->name('rubber-trap.view');
+        });
         Route::group(['prefix' => 'kulit-buah'], function () {
             Route::get('/', App\Livewire\Transaksi\Kulitbuah\ViewData::class)->name('kulit-buah.view');
         });

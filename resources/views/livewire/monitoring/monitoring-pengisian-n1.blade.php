@@ -53,7 +53,7 @@
                                     <th rowspan="2">Unit</th>
                                     <th rowspan="2">Produksi</th>
                                     <th colspan="2">TEH</th>
-                                    <th colspan="5">KARET</th>
+                                    <th colspan="6">KARET</th>
                                     <th colspan="3">KOPI</th>
                                 </tr>
                                 <tr>
@@ -64,6 +64,7 @@
                                     <th>N1-Abu</th>
                                     <th>N1-Ranting</th>
                                     <th>N1-Batang Kayu</th>
+                                    <th>N1-Rubber Trap</th>
                                     <th>N1-Kulit Buah</th>
                                     <th>N1-Husk Skin</th>
                                     <th>N1-Mucilage</th>
@@ -226,6 +227,23 @@
                                                 @if ($item->id_batang_kayu)
                                                     <button class="btn w-100 "
                                                         @click="showModal('{{ $item->id_batang_kayu }}', 't_batang_kayu')"
+                                                        style="border: none; background-color: transparent; padding: 0; margin: 0; height: 100%;">
+                                                        <span
+                                                            style="visibility: hidden; height: 50px; overflow: hidden">&nbsp;</span>
+                                                    </button>
+                                                @endif
+                                            </td>    
+                                        @endif 
+                                        @if ($item->jenis_unit != 'KARET')
+                                            <td style="background-color: rgb(104, 103, 100); padding: 0; height: 100%;">
+                                            </td>
+                                        @else
+                                            <td style="{{ $item->id_rubber_trap ? 'background-color: #0eff01' : 'background-color: #ff1e1e' }}; padding: 0; height: 100%;"
+                                                onmouseover="if('{{ $item->id_rubber_trap }}') this.style.backgroundColor='#0ccf01';"
+                                                onmouseout="if('{{ $item->id_rubber_trap }}') this.style.backgroundColor='#0eff01';">
+                                                @if ($item->id_rubber_trap)
+                                                    <button class="btn w-100 "
+                                                        @click="showModal('{{ $item->id_rubber_trap }}', 't_rubber_trap')"
                                                         style="border: none; background-color: transparent; padding: 0; margin: 0; height: 100%;">
                                                         <span
                                                             style="visibility: hidden; height: 50px; overflow: hidden">&nbsp;</span>

@@ -109,6 +109,11 @@
                                 N1-Karet-Batang Kayu
                             </a>
                         </li>
+                        <li><a href="{{ route('rubber-trap.view') }}" wire:navigate>
+                                <i class="mdi mdi-checkbox-blank-circle align-middle"></i>
+                                N1-Karet-Rubber Trap
+                            </a>
+                        </li>
                         <li><a href="{{ route('kulit-buah.view') }}" wire:navigate>
                                 <i class="mdi mdi-checkbox-blank-circle align-middle"></i>
                                 N1-Kopi-Kulit Buah

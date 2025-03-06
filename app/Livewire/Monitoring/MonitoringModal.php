@@ -15,10 +15,13 @@ use App\Models\TransaksiSolid;
 use App\Models\TransaksiTankos;
 use App\Models\TransaksiProduksiN1;
 use App\Models\TransaksiTeawaste;
+use App\Models\TransaksiAbuhe;
 use App\Models\TransaksiLimbahserum;
-use App\Models\TransaksiTunggulKaret;
+use App\Models\TransaksiTunggulkaret;
 use App\Models\TransaksiAbu;
 use App\Models\TransaksiRanting;
+use App\Models\TransaksiBatangkayu;
+use App\Models\TransaksiRubbertrap;
 use App\Models\TransaksiKulitbuah;
 use App\Models\TransaksiHuskskin;
 use App\Models\TransaksiMucilage;
@@ -85,10 +88,13 @@ class MonitoringModal extends Component
             $this->dataModal = TransaksiAbu::where('t_abu.uuid', $id)->withProduksiUnit()->get();
         } else if ($jenis == 't_ranting') {
             $log = $log->where('jenis_transaksi', 't_ranting');
-            $this->dataModal = TransaksiBatangkayu::where('t_batang_kayu.uuid', $id)->withProduksiUnit()->get();
+            $this->dataModal = TransaksiRanting::where('t_ranting.uuid', $id)->withProduksiUnit()->get();
         } else if ($jenis == 't_batang_kayu') {
             $log = $log->where('jenis_transaksi', 't_batang_kayu');
-            $this->dataModal = TransaksiKulitbuah::where('t_kulit_buah.uuid', $id)->withProduksiUnit()->get();
+            $this->dataModal = TransaksiBatangkayu::where('t_batang_kayu.uuid', $id)->withProduksiUnit()->get();
+        } else if ($jenis == 't_rubber_trap') {
+            $log = $log->where('jenis_transaksi', 't_rubber_trap');
+            $this->dataModal = TransaksiRubbertrap::where('t_rubber_trap.uuid', $id)->withProduksiUnit()->get();
         } else if ($jenis == 't_kulit_buah') {
             $log = $log->where('jenis_transaksi', 't_kulit_buah');
             $this->dataModal = TransaksiKulitbuah::where('t_kulit_buah.uuid', $id)->withProduksiUnit()->get();

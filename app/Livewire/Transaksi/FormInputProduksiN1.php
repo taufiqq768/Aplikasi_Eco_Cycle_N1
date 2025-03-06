@@ -32,6 +32,7 @@ class FormInputProduksiN1 extends Component
     public $abu = 0; 
     public $ranting = 0; 
     public $batang_kayu = 0; 
+    public $rubber_trap = 0;
     public $kulit_buah = 0; 
     public $husk_skin = 0;
     public $mucilage = 0;              
@@ -59,6 +60,7 @@ class FormInputProduksiN1 extends Component
             $this->abu = $dataProduksi->produksi_abu;
             $this->ranting = $dataProduksi->produksi_ranting;
             $this->batang_kayu = $dataProduksi->produksi_batangkayu;
+            $this->rubber_trap = $dataProduksi->produksi_rubbertrap;
             $this->kulit_buah = $dataProduksi->produksi_kulitbuah;
             $this->husk_skin = $dataProduksi->produksi_huskskin;
             $this->mucilage = $dataProduksi->produksi_mucilage;
@@ -76,7 +78,7 @@ class FormInputProduksiN1 extends Component
         if ((int) date('d') < $periode->tanggal_tutup) {
             $isPeriodeOpen = true;
         }
-        return view('livewire.transaksi.form-input-produksi-N1', compact('isPeriodeOpen'));
+        return view('livewire.transaksi.form-input-produksi-n1', compact('isPeriodeOpen'));
     }
 
     #[On('setDataProduksi')]
@@ -99,7 +101,8 @@ class FormInputProduksiN1 extends Component
             $this->limbah_serum = $dataProduksi->produksi_limbahserum;
             $this->abu = $dataProduksi->produksi_abu;
             $this->ranting = $dataProduksi->produksi_ranting;
-            $this->batang_kayu = $dataProduksi->produksi_batangkayu;            
+            $this->batang_kayu = $dataProduksi->produksi_batangkayu;
+            $this->rubber_trap = $dataProduksi->produksi_rubbertrap;            
             $this->kulit_buah = $dataProduksi->produksi_kulitbuah;
             $this->husk_skin = $dataProduksi->produksi_huskskin;
             $this->mucilage = $dataProduksi->produksi_mucilage;
@@ -118,7 +121,8 @@ class FormInputProduksiN1 extends Component
         $this->tunggul_karet = 0; 
         $this->abu = 0; 
         $this->ranting = 0; 
-        $this->batang_kayu = 0;         
+        $this->batang_kayu = 0;
+        $this->rubber_trap = 0;         
         $this->kulit_buah = 0; 
         $this->husk_skin = 0;
         $this->mucilage = 0;              
@@ -137,7 +141,8 @@ class FormInputProduksiN1 extends Component
             $this->tunggul_karet = str_replace('.', '', $this->tunggul_karet);
             $this->abu = str_replace('.', '', $this->abu);
             $this->ranting = str_replace('.', '', $this->ranting);
-            $this->batang_kayu = str_replace('.', '', $this->batang_kayu);            
+            $this->batang_kayu = str_replace('.', '', $this->batang_kayu);
+            $this->rubber_trap = str_replace('.', '', $this->rubber_trap);            
             $this->kulit_buah = str_replace('.', '', $this->kulit_buah);
             $this->husk_skin = str_replace('.', '', $this->husk_skin);
             $this->mucilage = str_replace('.', '', $this->mucilage);
@@ -150,7 +155,8 @@ class FormInputProduksiN1 extends Component
                 'limbah_serum' => 'required|numeric',
                 'abu' => 'required|numeric',
                 'ranting' => 'required|numeric',
-                'batang_kayu' => 'required|numeric',                
+                'batang_kayu' => 'required|numeric',
+                'rubber_trap' => 'required|numeric',                
                 'kulit_buah' => 'required|numeric',
                 'husk_skin' => 'required|numeric',
                 'mucilage' => 'required|numeric',                                                                
@@ -174,7 +180,8 @@ class FormInputProduksiN1 extends Component
                         'produksi_tunggulkaret' => $this->tunggul_karet,                        
                         'produksi_abu' => $this->abu,                        
                         'produksi_ranting' => $this->ranting,
-                        'produksi_batangkayu' => $this->batang_kayu,                        
+                        'produksi_batangkayu' => $this->batang_kayu,
+                        'produksi_rubbertrap' => $this->rubber_trap,                        
                         'produksi_kulitbuah' => $this->kulit_buah,
                         'produksi_huskskin' => $this->husk_skin,
                         'produksi_mucilage' => $this->mucilage,
@@ -227,6 +234,7 @@ class FormInputProduksiN1 extends Component
             $this->abu = str_replace('.', '', $this->abu);
             $this->ranting = str_replace('.', '', $this->ranting);
             $this->batang_kayu = str_replace('.', '', $this->batang_kayu);
+            $this->rubber_trap = str_replace('.', '', $this->rubber_trap);
             $this->kulit_buah = str_replace('.', '', $this->kulit_buah);
             $this->husk_skin = str_replace('.', '', $this->husk_skin);
             $this->mucilage = str_replace('.', '', $this->mucilage);
@@ -240,6 +248,7 @@ class FormInputProduksiN1 extends Component
                 'abu' => 'required|numeric',
                 'ranting' => 'required|numeric',
                 'batang_kayu' => 'required|numeric',
+                'rubber_trap' => 'required|numeric',
                 'kulit_buah' => 'required|numeric',
                 'husk_skin' => 'required|numeric',
                 'mucilage' => 'required|numeric',                                                                
@@ -256,13 +265,14 @@ class FormInputProduksiN1 extends Component
                 'produksi_abu' => $this->abu,                        
                 'produksi_ranting' => $this->ranting,
                 'produksi_batangkayu' => $this->batang_kayu,
+                'produksi_rubbertrap' => $this->rubber_trap,
                 'produksi_kulitbuah' => $this->kulit_buah,
                 'produksi_huskskin' => $this->husk_skin,
                 'produksi_mucilage' => $this->mucilage,
                 'is_bunch_press' => $this->is_bunch,
             ];
 
-            $dbData = $data->only(['tbs_olah', 'produksi_teawaste', 'produksi_abuhe', 'produksi_limbahserum', 'produksi_tunggulkaret', 'produksi_abu', 'produksi_ranting', 'produksi_batangkayu', 'produksi_kulitbuah', 'produksi_huskskin', 'produksi_mucilage', 'is_bunch_press']);
+            $dbData = $data->only(['tbs_olah', 'produksi_teawaste', 'produksi_abuhe', 'produksi_limbahserum', 'produksi_tunggulkaret', 'produksi_abu', 'produksi_ranting', 'produksi_batangkayu', 'produksi_rubbertrap', 'produksi_kulitbuah', 'produksi_huskskin', 'produksi_mucilage', 'is_bunch_press']);
 
             $changed = array_diff($input, $dbData);
 
@@ -276,7 +286,8 @@ class FormInputProduksiN1 extends Component
                         'produksi_tunggulkaret' => $this->tunggul_karet,                        
                         'produksi_abu' => $this->abu,                        
                         'produksi_ranting' => $this->ranting,
-                        'produksi_batangkayu' => $this->batang_kayu,                        
+                        'produksi_batangkayu' => $this->batang_kayu,
+                        'produksi_rubbertrap' => $this->rubber_trap,                        
                         'produksi_kulitbuah' => $this->kulit_buah,
                         'produksi_huskskin' => $this->husk_skin,
                         'produksi_mucilage' => $this->mucilage,

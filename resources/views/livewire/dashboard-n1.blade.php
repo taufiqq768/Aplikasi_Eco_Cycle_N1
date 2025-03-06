@@ -3,7 +3,7 @@
 <div>
     <x-page-title title="Dashboard">
         <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard-n1.index') }}">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
     </x-page-title>
@@ -98,8 +98,8 @@
                                                 <div class="placeholder col-12 py-5"></div>
                                             </div>
                                             <div id="pattern_chart"
-                                                data-colors='["--bs-primary", "--bs-success", "--bs-warning", "--bs-danger", "--bs-info", "--bs-pink", "--bs-secondary"]'
-                                                class="apex-charts" dir="ltr" wire:ignore></div>
+                                                    data-colors='["#81ce00", "#90EE90", "#ADD8E6", "#ffcc00", "#ff66cc", "#663399", "#ff6600", "#66cc99", "#f1f7a9", "#3399ff"]'
+                                                    class="apex-charts" dir="ltr" wire:ignore></div>
                                         </div>
                                     </div>
                                 </div>
@@ -113,8 +113,8 @@
                                                 <div class="placeholder col-12 py-5"></div>
                                             </div>
                                             <div id="stacked_bar_100"
-                                                data-colors='["--bs-primary", "--bs-success", "--bs-warning", "--bs-danger", "--bs-info", "--bs-secondary", "--bs-pink"]'
-                                                class="apex-charts" dir="ltr" wire:ignore></div>
+                                                    data-colors='["#81ce00", "#00fff0", "#90EE90", "#ffcc00", "#ff66cc", "#663399", "#ff6600", "#66cc99", "#f1f7a9", "#3399ff"]'
+                                                    class="apex-charts" dir="ltr" wire:ignore></div>
                                         </div>
                                     </div>
                                 </div>

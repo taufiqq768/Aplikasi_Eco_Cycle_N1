@@ -173,6 +173,7 @@ class MasterRegion extends Model
             DB::raw('SUM(t_stok.stok_abu) as stok_abu_awal_tahun'),
             DB::raw('SUM(t_stok.stok_ranting) as stok_ranting_awal_tahun'),
             DB::raw('SUM(t_stok.stok_batang_kayu) as stok_batang_kayu_awal_tahun'),
+            DB::raw('SUM(t_stok.stok_rubber_trap) as stok_rubber_trap_awal_tahun'),
             DB::raw('SUM(t_stok.stok_kulit_buah) as stok_kulit_buah_awal_tahun'),
             DB::raw('SUM(t_stok.stok_husk_skin) as stok_husk_skin_awal_tahun'),
             DB::raw('SUM(t_stok.stok_mucilage) as stok_mucilage_awal_tahun'),
@@ -183,7 +184,8 @@ class MasterRegion extends Model
             DB::raw('SUM(t_produksi_n1.produksi_tunggulkaret) as produksi_tunggul_karet'),
             DB::raw('SUM(t_produksi_n1.produksi_abu) as produksi_abu_abu'),
             DB::raw('SUM(t_produksi_n1.produksi_ranting) as produksi_ranting'),
-            DB::raw('SUM(t_produksi_n1.produksi_batangkayu) as produksi_batang_kayu'),            
+            DB::raw('SUM(t_produksi_n1.produksi_batangkayu) as produksi_batang_kayu'),
+            DB::raw('SUM(t_produksi_n1.produksi_rubbertrap) as produksi_rubber_trap'),            
             DB::raw('SUM(t_produksi_n1.produksi_kulitbuah) as produksi_kulit_buah'),
             DB::raw('SUM(t_produksi_n1.produksi_huskskin) as produksi_husk_skin'),
             DB::raw('SUM(t_produksi_n1.produksi_mucilage) as produksi_mucilage'),
@@ -194,7 +196,8 @@ class MasterRegion extends Model
             DB::raw('SUM(t_tunggul_karet.pendapatan) as pendapatan_tunggul_karet'),
             DB::raw('SUM(t_abu.pendapatan) as pendapatan_abu'),
             DB::raw('SUM(t_ranting.pendapatan) as pendapatan_ranting'),
-            DB::raw('SUM(t_batang_kayu.pendapatan) as pendapatan_batang_kayu'),            
+            DB::raw('SUM(t_batang_kayu.pendapatan) as pendapatan_batang_kayu'),
+            DB::raw('SUM(t_rubber_trap.pendapatan) as pendapatan_rubber_trap'),            
             DB::raw('SUM(t_kulit_buah.pendapatan) as pendapatan_kulit_buah'),
             DB::raw('SUM(t_husk_skin.pendapatan) as pendapatan_husk_skin'),
             DB::raw('SUM(t_mucilage.pendapatan) as pendapatan_mucilage'),
@@ -268,6 +271,16 @@ class MasterRegion extends Model
                     - COALESCE(t_batang_kayu.dijual, 0))
                     + (t_stok.stok_batang_kayu) 
                     ) as sisa_batang_kayu'
+            ),
+
+            DB::raw(
+                'SUM((t_produksi_n1.produksi_rubbertrap 
+                    - COALESCE(t_rubber_trap.digunakan, 0) 
+                    - COALESCE(t_rubber_trap.dikirim, 0) 
+                    - COALESCE(t_rubber_trap.volume_keperluan_lain, 0) 
+                    - COALESCE(t_rubber_trap.dijual, 0))
+                    + (t_stok.stok_rubber_trap) 
+                    ) as sisa_rubber_trap'
             ),
 
             DB::raw(
@@ -364,6 +377,15 @@ class MasterRegion extends Model
             ),
 
             DB::raw(
+                'SUM( COALESCE(t_rubber_trap.digunakan, 0) 
+                    + COALESCE(t_rubber_trap.dikirim, 0) 
+                    + COALESCE(t_rubber_trap.volume_keperluan_lain, 0) 
+                    + COALESCE(t_rubber_trap.dijual, 0))
+                    + (t_stok.stok_rubber_trap) 
+                    ) as rubber_trap_digunakan'
+            ),
+
+            DB::raw(
                 'SUM( COALESCE(t_kulit_buah.digunakan, 0) 
                     + COALESCE(t_kulit_buah.dikirim, 0) 
                     + COALESCE(t_kulit_buah.volume_keperluan_lain, 0) 
@@ -400,6 +422,7 @@ class MasterRegion extends Model
             ->leftJoin('t_abu', 't_produksi_n1.uuid', '=', 't_abu.id_t_produksi')
             ->leftJoin('t_ranting', 't_produksi_n1.uuid', '=', 't_ranting.id_t_produksi')
             ->leftJoin('t_batang_kayu', 't_produksi_n1.uuid', '=', 't_batang_kayu.id_t_produksi')
+            ->leftJoin('t_rubber_trap', 't_produksi_n1.uuid', '=', 't_rubber_trap.id_t_produksi')
             ->leftJoin('t_kulit_buah', 't_produksi_n1.uuid', '=', 't_kulit_buah.id_t_produksi')
             ->leftJoin('t_husk_skin', 't_produksi_n1.uuid', '=', 't_husk_skin.id_t_produksi')
             ->leftJoin('t_mucilage', 't_produksi_n1.uuid', '=', 't_mucilage.id_t_produksi')            
@@ -425,6 +448,7 @@ class MasterRegion extends Model
             't_abu.uuid as id_abu',
             't_ranting.uuid as id_ranting',
             't_batang_kayu.uuid as id_batang_kayu',
+            't_rubber_trap.uuid as id_rubber_trap',
             't_kulit_buah.uuid as id_kulit_buah',
             't_husk_skin.uuid as id_husk_skin',
             't_mucilage.uuid as id_mucilage'
@@ -441,7 +465,8 @@ class MasterRegion extends Model
             ->leftJoin('t_tunggul_karet', 't_produksi_n1.uuid', '=', 't_tunggul_karet.id_t_produksi')
             ->leftJoin('t_abu', 't_produksi_n1.uuid', '=', 't_abu.id_t_produksi')
             ->leftJoin('t_ranting', 't_produksi_n1.uuid', '=', 't_ranting.id_t_produksi')
-            ->leftJoin('t_batang_kayu', 't_produksi_n1.uuid', '=', 't_batang_kayu.id_t_produksi')            
+            ->leftJoin('t_batang_kayu', 't_produksi_n1.uuid', '=', 't_batang_kayu.id_t_produksi')
+            ->leftJoin('t_rubber_trap', 't_produksi_n1.uuid', '=', 't_rubber_trap.id_t_produksi')            
             ->leftJoin('t_kulit_buah', 't_produksi_n1.uuid', '=', 't_kulit_buah.id_t_produksi')
             ->leftJoin('t_husk_skin', 't_produksi_n1.uuid', '=', 't_husk_skin.id_t_produksi')
             ->leftJoin('t_mucilage', 't_produksi_n1.uuid', '=', 't_mucilage.id_t_produksi')            

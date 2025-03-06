@@ -178,6 +178,26 @@ class MasterUnitN1 extends Model
         return $query;
     }
 
+    public function scopeUnitWithRubebrTrap($query, $kodeUnit, $tahun, $bulan)
+    {
+        $query->select(
+            'm_unit_n1.*',
+            't_produksi_n1.uuid as id_produksi',
+            't_produksi_n1.tbs_olah',
+            't_produksi_n1.produksi_rubbertrap',
+            't_rubber_trap.uuid as id_rubbertrap',
+            't_rubber_trap.*',
+            't_evidence.*',
+        )
+            ->where('m_unit_n1.kode', $kodeUnit)
+            ->whereYear('t_produksi_n1.tanggal', $tahun)
+            ->whereMonth('t_produksi_n1.tanggal', $bulan)
+            ->leftJoin('t_produksi_n1', 'm_unit_n1.kode', '=', 't_produksi_n1.kode_unit')
+            ->leftJoin('t_rubber_trap', 't_produksi_n1.uuid', '=', 't_rubber_trap.id_t_produksi')
+            ->leftJoin('t_evidence', 't_rubber_trap.uuid', '=', 't_evidence.id_transaksi');
+        return $query;
+    }
+
     public function scopeUnitWithKulitBuah($query, $kodeUnit, $tahun, $bulan)
     {
         $query->select(
